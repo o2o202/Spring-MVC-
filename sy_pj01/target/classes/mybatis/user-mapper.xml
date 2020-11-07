@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="sy_user">
+ 	<resultMap type="Userdto" id="UserMap">
+ 		<result property="sy_user_no" column="SY_USER_NO"/>
+ 		<result property="sy_user_id" column="SY_USER_ID"/>
+ 		<result property="sy_user_pw" column="SY_USER_PW"/>
+ 		<result property="sy_user_name" column="SY_USER_NAME"/>
+ 		<result property="sy_user_phone" column="SY_USER_PHONE"/>
+ 	</resultMap>
+ 	
+ 	<select id="Login" parameterType="Userdto" resultType="Userdto">
+ 		SELECT * 
+ 		FROM SY_USER
+ 		WHERE SY_USER_ID = #{sy_user_id}
+ 	</select>
+ 	
+ 	<insert id="signup" parameterType="Userdto">
+ 		INSERT INTO SY_USER VALUES(SY_USERS.NEXTVAL,#{sy_user_id},#{sy_user_pw},#{sy_user_name},#{sy_user_phone})
+ 	</insert>
+ 	
+ 	<select id="phoneChk" parameterType="String">
+ 		SELECT *
+ 		FROM SY_USER
+ 		WHERE SY_USER_PHONE = #{sy_user_phone}
+ 	</select>
+ 
+ </mapper>
